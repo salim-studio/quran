@@ -1,0 +1,190 @@
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مواقيت الصلاة والقرآن الكريم</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container-fluid tv-screen">
+        <div class="row h-100">
+            <!-- صفحة مواقيت الصلاة -->
+            <div id="prayer-times-section" class="section active">
+                <div class="row">
+                    <div class="col-12 text-center mb-4">
+                        <h1 class="main-title">مواقيت الصلاة</h1>
+                        <div class="location-info">
+                            <h2 id="current-city">جاري تحميل المدينة...</h2>
+                            <h3 id="current-date">جاري تحميل التاريخ...</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row prayer-times-container">
+                    <div class="col-12">
+                        <div class="prayer-times">
+                            <div class="prayer-time">
+                                <div class="prayer-name">الفجر</div>
+                                <div class="prayer-hour" id="fajr-time">--:--</div>
+                            </div>
+                            <div class="prayer-time">
+                                <div class="prayer-name">الشروق</div>
+                                <div class="prayer-hour" id="sunrise-time">--:--</div>
+                            </div>
+                            <div class="prayer-time">
+                                <div class="prayer-name">الظهر</div>
+                                <div class="prayer-hour" id="dhuhr-time">--:--</div>
+                            </div>
+                            <div class="prayer-time">
+                                <div class="prayer-name">العصر</div>
+                                <div class="prayer-hour" id="asr-time">--:--</div>
+                            </div>
+                            <div class="prayer-time">
+                                <div class="prayer-name">المغرب</div>
+                                <div class="prayer-hour" id="maghrib-time">--:--</div>
+                            </div>
+                            <div class="prayer-time">
+                                <div class="prayer-name">العشاء</div>
+                                <div class="prayer-hour" id="isha-time">--:--</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row location-selection mt-4">
+                    <!-- سيتم إضافة عنصر select للمناطق ديناميكيًا هنا -->
+                    <div class="col-md-6 col-12 mb-3">
+                        <select id="country-select" class="form-select form-select-lg">
+                            <option value="">اختر الدولة</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 col-12 mb-3">
+                        <select id="city-select" class="form-select form-select-lg">
+                            <option value="">اختر المدينة</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <div class="hadith-container">
+                            <h3 class="hadith-title">حديث شريف</h3>
+                            <p id="hadith-text" class="hadith-text">جاري تحميل الحديث...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- صفحة القرآن الكريم -->
+            <div id="quran-section" class="section">
+                <div class="row">
+                    <div class="col-12 text-center mb-4">
+                        <h1 class="main-title">القرآن الكريم</h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 col-12 mb-3">
+                        <select id="surah-select" class="form-select form-select-lg">
+                            <option value="">اختر السورة</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 col-12 mb-3">
+                        <select id="reciter-select" class="form-select form-select-lg">
+                            <!-- سيتم تعبئته ديناميكيًا -->
+                        </select>
+                    </div>
+                    <div class="col-md-3 col-12 mb-3">
+                        <select id="translation-language" class="form-select form-select-lg">
+                            <!-- سيتم تعبئته ديناميكيًا -->
+                        </select>
+                    </div>
+                    <div class="col-md-3 col-12 mb-3">
+                        <button id="toggle-translation-btn" class="btn btn-primary w-100">عرض الترجمة</button>
+                    </div>
+                    <div class="col-md-3 col-12 mb-3">
+                        <select id="tafsir-select" class="form-select form-select-lg">
+                            <!-- سيتم تعبئته ديناميكيًا -->
+                        </select>
+                    </div>
+                    <div class="col-md-3 col-12 mb-3">
+                        <button id="toggle-tafsir-btn" class="btn btn-info w-100">عرض التفسير</button>
+                    </div>
+                    <div class="col-md-3 col-12 mb-3">
+                        <button id="play-audio-btn" class="btn btn-success w-100">
+                            <i class="fas fa-play me-2"></i> استماع للتلاوة
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 col-12">
+                        <div id="playback-controls" class="playback-controls" style="display: none;">
+                            <button id="prev-ayah-btn" class="btn btn-secondary">
+                                <i class="fas fa-step-backward"></i> الآية السابقة
+                            </button>
+                            <span id="ayah-counter" class="btn btn-light disabled">-- / --</span>
+                            <button id="next-ayah-btn" class="btn btn-secondary">
+                                الآية التالية <i class="fas fa-step-forward"></i>
+                            </button>
+                            <div class="playback-mode ms-auto">
+                                <label class="form-check-label me-2" for="playback-mode">وضع آية بآية</label>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="playback-mode">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quran-container">
+                            <div id="arabic-text" class="quran-text arabic">
+                                اختر سورة لعرض الآيات
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <div id="sidebar" class="sidebar">
+                            <ul class="nav nav-tabs" id="sidebarTabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="translation-tab" data-bs-toggle="tab" data-bs-target="#translation-panel" type="button" role="tab">الترجمة</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tafsir-tab" data-bs-toggle="tab" data-bs-target="#tafsir-panel" type="button" role="tab">التفسير</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="sidebarContent">
+                                <div class="tab-pane fade show active" id="translation-panel" role="tabpanel">
+                                    <div id="translation-text" class="quran-text translation">
+                                        اختر سورة لعرض الترجمة
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tafsir-panel" role="tabpanel">
+                                    <div id="tafsir-text" class="quran-text tafsir">
+                                        اختر سورة لعرض التفسير
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- أزرار التنقل -->
+            <div class="navigation-buttons">
+                <button id="prayer-times-btn" class="nav-btn active">
+                    <i class="fas fa-mosque"></i> مواقيت الصلاة
+                </button>
+                <button id="quran-btn" class="nav-btn">
+                    <i class="fas fa-book-quran"></i> القرآن الكريم
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment-hijri/moment-hijri.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

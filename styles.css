@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #1e4174;
+    --secondary-color: #4f84c4;
+    --accent-color: #d4af37;
+    --text-color: #333;
+    --bg-color: #f0f7ff;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Scheherazade New', 'Amiri', serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tv-screen {
+    background: linear-gradient(135deg, #f0f7ff 0%, #d6e6ff 100%);
+    background-size: cover;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    height: 95vh;
+    padding: 20px;
+    position: relative;
+}
+
+.section {
+    display: none;
+    height: 100%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.section.active {
+    display: block;
+}
+
+.main-title {
+    color: var(--primary-color);
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.main-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 100px;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+
+.location-info {
+    margin-bottom: 20px;
+}
+
+#current-city {
+    font-size: 2rem;
+    color: var(--secondary-color);
+}
+
+#current-date {
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.prayer-times-container {
+    margin: 20px 0;
+}
+
+.prayer-times {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.prayer-time {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+    border-right: 4px solid var(--primary-color);
+}
+
+.prayer-time:hover {
+    transform: translateY(-5px);
+}
+
+.prayer-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.prayer-hour {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.hadith-container {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: var(--shadow);
+    border-right: 4px solid var(--accent-color);
+}
+
+.hadith-title {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.hadith-text {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.quran-container {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 20px;
+    box-shadow: var(--shadow);
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.quran-text {
+    font-size: 1.8rem;
+    line-height: 2;
+    text-align: justify;
+}
+
+.arabic {
+    font-family: 'Scheherazade New', serif;
+    font-size: 2rem;
+}
+
+.english {
+    font-family: 'Times New Roman', serif;
+    direction: ltr;
+    text-align: left;
+}
+
+.ayah {
+    position: relative;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.ayah.highlighted {
+    background-color: rgba(212, 175, 55, 0.2);
+    border-radius: 5px;
+}
+
+.playback-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.playback-mode {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ayah-number {
+    font-size: 0.8em;
+    color: var(--accent-color);
+    font-weight: bold;
+    vertical-align: super;
+    margin-right: 3px;
+}
+
+.navigation-buttons {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 100;
+}
+
+.nav-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 25px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-3px);
+}
+
+.nav-btn.active {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.form-select, .btn {
+    height: 50px;
+    font-size: 1.2rem;
+}
+
+.translation {
+    font-family: 'Times New Roman', serif;
+    line-height: 2;
+    text-align: justify;
+}
+
+.rtl-text {
+    direction: rtl;
+    text-align: right;
+    font-family: 'Scheherazade New', 'Amiri', serif;
+}
+
+.ltr-text {
+    direction: ltr;
+    text-align: left;
+}
+
+.tafsir {
+    font-family: 'Scheherazade New', 'Amiri', serif;
+    font-size: 1.6rem;
+    line-height: 1.8;
+    padding-top: 20px;
+}
+
+.tafsir-sidebar {
+    display: none;
+}
+
+.sidebar {
+    height: 100%;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border-right: 4px solid var(--secondary-color);
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+#sidebarTabs {
+    border-bottom: 2px solid var(--primary-color);
+    margin-bottom: 15px;
+}
+
+#sidebarTabs .nav-link {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+#sidebarTabs .nav-link.active {
+    color: var(--primary-color);
+    background-color: transparent;
+    border-color: var(--primary-color);
+    border-bottom: 3px solid var(--accent-color);
+}
+
+.tab-content {
+    padding: 15px;
+}
+
+.tafsir-author {
+    color: var(--secondary-color);
+    font-style: italic;
+    font-size: 1.3rem;
+}
+
+.tafsir-ayah {
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--accent-color);
+}
+
+.original-ayah {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    background-color: rgba(212, 175, 55, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.tafsir-text {
+    text-align: justify;
+}
+
+.tafsir-content {
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    #current-city {
+        font-size: 1.5rem;
+    }
+    
+    #current-date {
+        font-size: 1.2rem;
+    }
+    
+    .prayer-name {
+        font-size: 1.5rem;
+    }
+    
+    .prayer-hour {
+        font-size: 1.7rem;
+    }
+    
+    .hadith-title {
+        font-size: 1.5rem;
+    }
+    
+    .hadith-text, .quran-text {
+        font-size: 1.3rem;
+    }
+    
+    .arabic {
+        font-size: 1.5rem;
+    }
+    
+    .nav-btn {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
